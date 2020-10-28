@@ -29,7 +29,7 @@ namespace APITemperatura
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "APITemperatura", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "APITemperatura com update", Version = "v2" });
             });
         }
 
