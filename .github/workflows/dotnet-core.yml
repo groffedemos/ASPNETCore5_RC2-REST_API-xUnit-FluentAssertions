@@ -12,7 +12,7 @@ jobs:
       CAMINHO_PROJETO_TESTES: ./APITemperatura.Testes/APITemperatura.Testes.csproj
       CAMINHO_PROJETO_WEBAPP: ./APITemperatura
       DOCKER_CONTAINER_REGISTRY: groffegithubactions.azurecr.io
-      NOME_IMAGEM: $CONTAINER_REGISTRY_SERVER/apitemperaturas
+      NOME_IMAGEM: $DOCKER_CONTAINER_REGISTRY/apitemperaturas
 
     runs-on: ubuntu-latest
 
