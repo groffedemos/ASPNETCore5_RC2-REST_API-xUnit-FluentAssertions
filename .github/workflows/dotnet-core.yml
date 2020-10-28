@@ -13,6 +13,7 @@ jobs:
       CAMINHO_PROJETO_WEBAPP: ./APITemperatura
       DOCKER_CONTAINER_REGISTRY: groffegithubactions.azurecr.io
       NOME_IMAGEM: $DOCKER_CONTAINER_REGISTRY/apitemperaturas
+      NOME_WEBAPP_AZURE: groffetemperatura 
 
     runs-on: ubuntu-latest
 
@@ -39,3 +40,14 @@ jobs:
         docker build . --file Dockerfile --tag ${{ env.NOME_IMAGEM }}:latest
         docker tag ${{ env.NOME_IMAGEM }}:latest ${{ env.NOME_IMAGEM }}:$GITHUB_RUN_NUMBER
         docker push ${{ env.NOME_IMAGEM }}
+
+    - name: Azure Login - Conectando com Credenciais no Azure
+      uses: Azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+       
+    - name: Azure WebApp - Deployment da Aplicacao
+      uses: Azure/webapps-deploy@v2
+      with:
+        app-name: ${{ env.NOME_WEBAPP_AZURE }}
+        images: 'groffegithubactions.azurecr.io/apitemperaturas:latest'
