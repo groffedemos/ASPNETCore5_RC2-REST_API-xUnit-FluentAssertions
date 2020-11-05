@@ -29,6 +29,11 @@ stages:
       vmImage: $(vmImageName)
     steps:
     - script: dotnet --list-sdks
+    - task: UseDotNet@2
+      inputs:
+        version: '5.0.x'
+        includePreviewVersions: true # Required for preview versions
+    - script: dotnet --list-sdks
     - task: DotNetCoreCLI@2
       inputs:
         command: 'test'
